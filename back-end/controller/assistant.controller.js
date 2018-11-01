@@ -30,14 +30,14 @@ const sendMessage = (input, _context) => {
         //console.log(JSON.stringify(context))
         if (input != null) {
             assistant.message({
-                workspace_id: process.env.workspace_id,
+                workspace_id: assistant_workspace,
                 input: {
                     'text': input.text
                 },
                 context: context
             }, function (err, res) {
                 if (err) {
-                    console.log(err);
+                    console.log("ASSISTANT MESSAGE ERROR:" + err);
                     reject(err);
                 } else {
                     //console.log(res)
