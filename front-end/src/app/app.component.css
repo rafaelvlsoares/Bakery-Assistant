@@ -1,0 +1,65 @@
+.row {
+    margin: 0;
+}
+
+#global {
+    width: 100vw;
+    height: 100vh;
+    background: no-repeat;
+    background-image: url("../assets/background.jpg");
+    background-size: cover;
+}
+
+#logo-holder {
+    height: 100%;
+    text-align: center;
+}
+
+#chat-holder {
+    height: 100%;
+    z-index: 1;
+    padding: 15px 5% 15px 5%;
+}
+
+#logo {
+    width: 50%; /* you can use % */
+    height: auto;
+    vertical-align: middle;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+html {
+    height: 100%;
+}
+body {
+    min-height: 100%;
+}
+
+#mother.jw-modal-open {
+    /* body overflow is hidden to hide main scrollbar when modal window is open */
+    overflow: hidden;
+}
+
+app-modal {
+    /* modals are hidden by default */
+    display: none;
+}
+
+.welcome-text {
+    margin-top: 23%;
+}
+
+.welcome-title {
+    font-weight: 700;
+    color: white;
+}
+
+.welcome-msg {
+    font-size: 15pt;
+    color: white;
+}

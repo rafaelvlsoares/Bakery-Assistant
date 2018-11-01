@@ -1,0 +1,9 @@
+<div *ngIf="chatInfo.user === 'watson'" class="col s12 l12 m12" [ngSwitch]="chatInfo?.type">
+  <app-chatbubble-text-content *ngSwitchCase="'text'" [chatInfo]="chatInfo"></app-chatbubble-text-content>
+  <app-chatbubble-image-content *ngSwitchCase="'image'" [chatInfo]="chatInfo"></app-chatbubble-image-content> 
+  <app-chatbubble-loading-content *ngSwitchCase="'loading'" [chatInfo]="chatInfo"></app-chatbubble-loading-content> 
+  <app-chatbubble-option-content *ngSwitchCase="'option'" [chatInfo]="chatInfo"></app-chatbubble-option-content> 
+</div>
+<div *ngIf="chatInfo.user == 'user'" class="col s12 l12 m12">
+  <app-chatbubble-text-content [chatInfo]="chatInfo"></app-chatbubble-text-content>
+</div>

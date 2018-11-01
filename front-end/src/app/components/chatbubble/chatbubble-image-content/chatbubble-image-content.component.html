@@ -1,0 +1,5 @@
+<div [ngClass]="{'me': chatInfo.user == 'user' }" class="chat imagem">
+    <h6><b>{{chatInfo?.title}}</b></h6>
+    <span style="font-style: italic">{{chatInfo?.description}}</span>
+    <img [src]="chatInfo.url">
+</div>

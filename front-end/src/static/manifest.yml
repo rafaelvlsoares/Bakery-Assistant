@@ -1,0 +1,5 @@
+applications:
+- name: '[InovaBRA] - Frontend'
+  host: inovaBRA-NLG
+  memory: 128M
+  buildpack: staticfile_buildpack

@@ -1,0 +1,6 @@
+<div id="footer" class="center-align">
+    <form (submit)="onSubmit($event)" class="valign-wrapper" style="padding: 10px 10px 0px 10px;">
+        <input [(ngModel)]="inputText" id="user-input" #userinput type="text" name="user-input" autocomplete="off" [disabled]="loading">
+        <app-footer-button-text (submitEvent)="onSubmit($event)"></app-footer-button-text>
+    </form>
+</div>

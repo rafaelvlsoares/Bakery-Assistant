@@ -1,0 +1,60 @@
+version: '2'
+messages:
+  $i18n: locales.yml
+template:
+  name:
+    $ref: "#/messages/template.name"
+  description:
+    $ref: "#/messages/template.description"
+  header: '![](toolchain.svg?localize)'
+  icon: icon.svg
+  required:
+    - sample-build
+    - sample-repo
+  info:
+    git url: >-
+      [https://github.ibm.com/CodeBakery/Bakery-Assistant](https://github.ibm.com/CodeBakery/Bakery-Assistant)
+    git branch: >-
+      [Pipeline-changes](https://github.ibm.com/CodeBakery/Bakery-Assistant/tree/Pipeline-changes)
+toolchain:
+  name: 'Bakery-Assistant-Toolchain-{{timestamp}}'
+  template:
+    getting_started:
+      $ref: "#/messages/template.gettingStarted"
+services:
+  sample-repo:
+    service_id: githubprivate
+    parameters:
+      repo_name: 'Bakery-Assistant'
+      repo_url: 'https://github.ibm.com/CodeBakery/Bakery-Assistant'
+      type: clone
+  sample-build:
+    service_id: pipeline
+    parameters:
+      services:
+        - sample-repo
+      name: '{{services.sample-repo.parameters.repo_name}}'
+      ui-pipeline: true
+      configuration:
+        content:
+          $text: pipeline.yml
+        env:
+          SAMPLE_REPO: sample-repo
+          CF_APP_NAME: '{{form.pipeline.parameters.prod-app-name}}'
+          PROD_SPACE_NAME: '{{form.pipeline.parameters.prod-space}}'
+          PROD_ORG_NAME: '{{form.pipeline.parameters.prod-organization}}'
+          PROD_REGION_ID: '{{form.pipeline.parameters.prod-region}}'
+          API_KEY: '{{form.pipeline.parameters.api-key}}'
+          WATSON_ASSISTANT_USERNAME: '{{form.pipeline.parameters.WATSON_ASSISTANT_USERNAME}}'
+          WATSON_ASSISTANT_PASSWORD: '{{form.pipeline.parameters.WATSON_ASSISTANT_PASSWORD}}'
+          WATSON_ASSISTANT_VERSION: '{{form.pipeline.parameters.WATSON_ASSISTANT_VERSION}}'
+          WATSON_ASSISTANT_WORKSPACE: '{{form.pipeline.parameters.WATSON_ASSISTANT_WORKSPACE}}'
+        execute: true
+  webide:
+    service_id: orion
+form:
+  pipeline:
+    parameters:
+      prod-app-name: '{{services.sample-repo.parameters.repo_name}}'
+    schema:
+      $ref: deploy.json

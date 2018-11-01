@@ -1,0 +1,68 @@
+---
+stages:
+- name: BUILD
+  inputs:
+  - type: git
+    branch: Pipeline-changes
+    service: ${SAMPLE_REPO}
+  triggers:
+  - type: commit
+  jobs:
+  - name: Build
+    type: builder
+    script: |
+     #!/bin/bash
+     # The default Node.js version is 0.10.40
+     # To use Node.js 0.10.48, uncomment the following line:
+     #export PATH=/opt/IBM/node-v0.10.48/bin:$PATH
+     # To use Node.js 0.12.7, uncomment the following line:
+     #export PATH=/opt/IBM/node-v0.12/bin:$PATH
+     # To use Node.js 4.4.5, uncomment the following line:
+     #export PATH=/opt/IBM/node-v4.4.5/bin:$PATH
+     # To use Node.js 6.7.0, uncomment the following line:
+     export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
+     cd front-end
+     npm install
+     npm run build
+     cd ..
+     ls
+- name: DEPLOY
+  inputs:
+  - type: job
+    stage: BUILD
+    job: Build
+  triggers:
+  - type: stage
+  properties:
+  - name: CF_APP_NAME
+    value: undefined
+    type: text
+  - name: APP_URL
+    value: undefined
+    type: text
+  - name: WATSON_ASSISTANT_USERNAME
+    value: ${WATSON_ASSISTANT_USERNAME}
+    type: text
+  - name: WATSON_ASSISTANT_PASSWORD
+    value: ${WATSON_ASSISTANT_PASSWORD}
+    type: text
+  - name: WATSON_ASSISTANT_VERSION
+    value: ${WATSON_ASSISTANT_VERSION}
+    type: text
+  - name: WATSON_ASSISTANT_WORKSPACE
+    value: ${WATSON_ASSISTANT_WORKSPACE}
+    type: text
+  jobs:
+  - name: Blue-Green Deploy
+    type: deployer
+    target:
+      region_id: ${PROD_REGION_ID}
+      organization: ${PROD_ORG_NAME}
+      space: ${PROD_SPACE_NAME}
+      application: ${CF_APP_NAME}
+      api_key: ${API_KEY}
+    script: |
+      #!/bin/bash
+      cd back-end
+      cf push
+      
