@@ -13,9 +13,9 @@ template:
     - sample-repo
   info:
     git url: >-
-      [https://github.ibm.com/CodeBakery/Bakery-Assistant](https://github.ibm.com/CodeBakery/Bakery-Assistant)
+      [https://github.com/Bluemix-Estag/Bakery-Assistant-Public](https://github.com/Bluemix-Estag/Bakery-Assistant-Public)
     git branch: >-
-      [Pipeline-changes](https://github.ibm.com/CodeBakery/Bakery-Assistant/tree/Pipeline-changes)
+      [master](https://github.ibm.com/CodeBakery/Bakery-Assistant/tree/master)
 toolchain:
   name: 'Bakery-Assistant-Toolchain-{{timestamp}}'
   template:
@@ -26,7 +26,7 @@ services:
     service_id: githubprivate
     parameters:
       repo_name: 'Bakery-Assistant'
-      repo_url: 'https://github.ibm.com/CodeBakery/Bakery-Assistant'
+      repo_url: 'https://github.com/Bluemix-Estag/Bakery-Assistant-Public'
       type: clone
   sample-build:
     service_id: pipeline
