@@ -1,0 +1,5 @@
+applications:
+- name: "[Pattern] Bakery Assistant"
+  routes:
+    - route: bakery-assistant-deploy.mybluemix.net
+  memory: 256M
