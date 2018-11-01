@@ -3,7 +3,7 @@ stages:
 - name: BUILD
   inputs:
   - type: git
-    branch: Pipeline-changes
+    branch: master
     service: ${SAMPLE_REPO}
   triggers:
   - type: commit
