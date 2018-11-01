@@ -23,7 +23,7 @@ toolchain:
       $ref: "#/messages/template.gettingStarted"
 services:
   sample-repo:
-    service_id: githubprivate
+    service_id: githubpublic
     parameters:
       repo_name: 'Bakery-Assistant'
       repo_url: 'https://github.com/Bluemix-Estag/Bakery-Assistant-Public'
