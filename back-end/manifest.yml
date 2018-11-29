@@ -1,5 +1,5 @@
 applications:
-- name: "[Pattern] Bakery Assistant"
+- name: "[CHATIM] Bakery Assistant"
   routes:
-    - route: bakery-assistant-deploy.mybluemix.net
+    - route: timchat-teste.mybluemix.net
   memory: 256M
