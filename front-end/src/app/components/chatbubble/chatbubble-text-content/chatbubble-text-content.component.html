@@ -1,6 +1,5 @@
 <!-- Classe 'me' só muda a cor, poderia ser parametro do componente -->
 
-<div [ngClass]="{'me': chatInfo?.user == 'user' }" class="chat">
-    {{chatInfo.text}}
+<div [ngClass]="{'me': chatInfo?.user == 'user' }" [innerHTML]="chatInfo.text" class="chat">
 </div>
 
